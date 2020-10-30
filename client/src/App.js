@@ -6,8 +6,6 @@ import Modal from "react-modal";
 
 import { Button } from "react-bootstrap";
 
-
-
 import { Player, ControlBar, ClosedCaptionButton } from 'video-react';
 import 'video-react/dist/video-react.css';
 
@@ -27,7 +25,7 @@ export default function App() {
     } catch (e) {
       console.error(e.message)
     }
-  };
+  }
 
   function HandleClick(name) {
     toggleModal();
@@ -52,17 +50,19 @@ export default function App() {
         overlayClassName="myoverlay"
         closeTimeoutMS={500}
       >
-        <div>{assistir}</div>
+        <div>
+        {/* {assistir} */}
+        <Button onClick={toggleModal} className='button-close'>Fechar</Button>
+        </div>
+          
         <div className='player-wrapper'>
-          <Player className='react-player'
+          <Player autoPlay className='react-player'
             width='100%'
             height='100%'>
             <source src={`http://localhost:4001/filmes/${assistir}`} />
           </Player>
         </div>
-        <Button variant="danger" onClick={toggleModal}>Fechar</Button>
       </Modal>
     </>
   );
 }
-

@@ -35,13 +35,13 @@ app.get('/filmes', (req, res) => {
     res.send(res_filmes())
 });
 
-app.get('/filmes/:movieName', (req, res) => {
-  const { movieName } = req.params;
-  const movieFile = `./filmes/${movieName}`;
-  fs.stat(movieFile, (err, stats) => {
+app.get('/filmes/:titulo', (req, res) => {
+  const { titulo } = req.params;
+  const arquivo = `./filmes/${titulo}`;
+  fs.stat(arquivo, (err, stats) => {
     if (err) {
       console.log(err);
-      return res.status(404).end('<h1>Movie Not found</h1>');
+      return res.status(404).end('<h1>Arquivo não encontrado!</h1>');
     }
     // Variáveis necessárias para montar o chunk header corretamente
     const { range } = req.headers;
@@ -66,4 +66,4 @@ app.get('/filmes/:movieName', (req, res) => {
   });
 });
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
+app.listen(port, () => console.log(`Server on - ${port}`));
